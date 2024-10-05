@@ -36,25 +36,14 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Set lang to de
+      - name: Set lang to uk
         run: |
-          sed -i "/^lang:/c\lang: de" _config.yml
+          sed -i "/^lang:/c\lang: uk" _config.yml
           if ! grep -q "^lang:" _config.yml; then
-            echo "lang: de" >> _config.yml
+            echo "lang: uk" >> _config.yml
           fi
       - name: Build with Jekyll
-        run: bundle exec jekyll build --destination _site/de --baseurl "${{ steps.pages.outputs.base_path }}/de"
-        env:
-          JEKYLL_ENV: production
-
-      - name: Set lang to es
-        run: |
-          sed -i "/^lang:/c\lang: es" _config.yml
-          if ! grep -q "^lang:" _config.yml; then
-            echo "lang: es" >> _config.yml
-          fi
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --destination _site/es --baseurl "${{ steps.pages.outputs.base_path }}/es"
+        run: bundle exec jekyll build --destination _site/de --baseurl "${{ steps.pages.outputs.base_path }}/uk"
         env:
           JEKYLL_ENV: production
 
@@ -70,9 +59,8 @@ jobs:
           echo '<body>' >> index.html
           echo '    <h1>Welcome to Our Multilingual Site</h1>' >> index.html
           echo '    <ul>' >> index.html
-          echo '        <li><a href="de/">Deutsch</a></li>' >> index.html
+          echo '        <li><a href="uk/">Українська</a></li>' >> index.html
           echo '        <li><a href="en/">English</a></li>' >> index.html
-          echo '        <li><a href="es/">Español</a></li>' >> index.html
           echo '    </ul>' >> index.html
           echo '</body>' >> index.html
           echo '</html>' >> index.html
